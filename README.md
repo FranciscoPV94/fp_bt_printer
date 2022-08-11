@@ -45,7 +45,7 @@ This method recibe address of the printer and List<int> of the data;
     }
 ```
 
-### Ticket with Styles usin :
+#### Ticket with Styles usin :
 ```dart
 List<int> getTicket() {
   final List<int> bytes = [];
@@ -88,4 +88,8 @@ List<int> getTicket() {
 **Xprinter Portable Thermal Printer**
   
   Model: Bixolon SPP-R310
+
+## Evidence
+
+<img src="https://raw.githubusercontent.com/FranciscoPV94/fp_bt_printer/main/photo_recipe.jpg" alt="test receipt" width="400"/>
 
