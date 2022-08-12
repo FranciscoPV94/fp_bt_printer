@@ -1,7 +1,8 @@
 name: fp_bt_printer
-description: A new flutter plugin project.
+description:  printing receipts on bluetooth thermal printers (android only).
 version: 0.0.1
 homepage: null
+author: Francisco Peralta Vasquez
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
