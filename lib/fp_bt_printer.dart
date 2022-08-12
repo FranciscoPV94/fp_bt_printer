@@ -1,6 +1,7 @@
 library fp_bt_printer;
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -50,13 +51,35 @@ class FpBtPrinter {
   ///test to connection for printer is ok
   Future<PrinterResponseModel<BluetoothConnection>> checkConnection(
       String address) async {
-    final conn = await BluetoothConnection.toAddress(address);
+    try {
+      final conn = await BluetoothConnection.toAddress(address);
 
-    return PrinterResponseModel(
-        success: conn.isConnected,
-        message: conn.isConnected
-            ? "connected with => $address"
-            : "not connected => $address");
+      if (conn.isConnected) {
+        _connection = conn;
+
+        _connection!.output.add(Uint8List.fromList(utf8.encode("\r")));
+        await _connection!.output.allSent;
+        await Future.delayed(const Duration(seconds: 1), () {
+          disconnect();
+        });
+
+        return PrinterResponseModel(
+            success: conn.isConnected,
+            message: conn.isConnected
+                ? "connected with => $address"
+                : "not connected => $address");
+      } else {
+        return PrinterResponseModel(
+            success: conn.isConnected,
+            message: conn.isConnected
+                ? "connected with => $address"
+                : "not connected => $address");
+      }
+    } catch (error) {
+      return PrinterResponseModel(
+          success: false,
+          message: "Error: ${error.toString()}, not connected => $address");
+    }
   }
 
   ///Opens the Bluetooth platform system settings.
@@ -83,7 +106,7 @@ class FpBtPrinter {
   }) async {
     disconnect();
     if (bluetoothState.isEnabled) {
-      print('address is => $address');
+      print('fp_bt_printer: address is => $address');
       try {
         final respuesta = await BluetoothConnection.toAddress(address);
 
@@ -104,11 +127,10 @@ class FpBtPrinter {
             sleep(Duration(milliseconds: queueSleepTimeMs));
           }
 
+          //delay for waiting printer and disconnect
           await Future.delayed(const Duration(seconds: 5), () {
             disconnect();
           });
-
-          print("okayyy");
 
           return PrinterResponseModel(
               success: true, message: "The data was printed");
@@ -142,7 +164,7 @@ class FpBtPrinter {
       _connection?.dispose();
       _connection = null;
     }
-    print('closed connection.');
+    print('fp_bt_printer: closed connection.');
   }
 
   void dispose() {

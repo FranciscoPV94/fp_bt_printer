@@ -1,7 +1,7 @@
 name: fp_bt_printer
 description:  printing receipts on bluetooth thermal printers (android only).
 version: 0.0.1
-homepage: null
+homepage: https://github.com/FranciscoPV94/fp_bt_printer
 author: Francisco Peralta Vasquez
 
 environment:

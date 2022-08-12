@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'dart:io';
 
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:image/image.dart';
 import 'package:fp_bt_printer/fp_bt_printer.dart';
 
 void main() {
-  print("holaa");
   runApp(MyApp());
 }
 
@@ -60,7 +58,6 @@ class _HomeSecreenState extends State<HomeSecreen> {
       if (response.success) {
         device = d;
         connected = true;
-        printer.disconnect();
       } else {
         connected = false;
         device = null;
@@ -148,7 +145,7 @@ class _HomeSecreenState extends State<HomeSecreen> {
                     onPressed: connected
                         ? () => this.printTicket(device!.address)
                         : null,
-                    child: Text("PRINT"),
+                    child: Text("PRINT DATA"),
                   ),
                 ],
               ),
