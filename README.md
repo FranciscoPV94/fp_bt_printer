@@ -92,4 +92,9 @@ List<int> getTicket() {
 ## Evidence
 
 <img src="https://raw.githubusercontent.com/FranciscoPV94/fp_bt_printer/main/photo_recipe.jpg" alt="test receipt" width="400"/>
+    
+## Support me
+
+If you think that this project has helped you with your developments, you can support this project, any support is much appreciated.
+[![Paypal](https://raw.githubusercontent.com/arthas1888/flutter_pos_printer_platform/main/btn-sm-paypal-payment.png)](https://www.paypal.com/donate/?hosted_button_id=W9WAAB2RG5SVU)
 
